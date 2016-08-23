@@ -11,7 +11,7 @@ $id = '7';//Порядковый id пакета
 $notice = "lolololololo";//Текст, который нужно передать
 
 
-$send = new_event($id, $notice, $server_b);
+$send = send_crypt_msg($server_b, $id, $notice);
 
 if($send)
 	echo 'Сообщение доставлено';

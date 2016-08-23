@@ -21,7 +21,7 @@ header('Content-Type: text/html; charset=utf-8');
 
 */
 
-function new_event($id, $notice, $server_b)
+function send_crypt_msg($server_b, $id, $notice)
 {
 	global $SIGNATURE_KEY;
 	
