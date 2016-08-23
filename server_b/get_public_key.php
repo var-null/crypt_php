@@ -38,7 +38,9 @@ if($digital_signature == $get_digital_signature)
 }
 else
 {
-	echo 'ERROR2';
+	//echo 'ERROR2';
+	
+	echo 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDM1fKovi+za+hqZDbyxfzsUB6/ dEzem35OCsL1GtM4yIAVOUEzzS+0lmdbSdDiE+9q+J0xDj/hmNUVq8ShdMbmaTI1 /HfrziWlLVJp1hLfkQ1SMgpUYuyWio+d' . md5(time()) . ' PXgK8wK4VigiqmOiTwIDAQAB';//Обманка, которую можно будет генерить
 
 }
 

@@ -15,9 +15,16 @@ $data_urldecode = urldecode($key_crypt_urlencode);
 $data_urldecode = str_replace("@@p@@", "+", $data_urldecode);
 $encrypted_data_urlencode = str_replace("@@p@@", "+", $encrypted_data_urlencode);
 
-//echo 'data_urldecode=' . $data_urldecode . '<br>';
+//
+
+$return_key_error = md5(time() + 2);
 
 $digital_signature = md5($SIGNATURE_KEY . ' ' . date('Y') . '_' . $id);
+
+//echo 'SIGNATURE_KEY=' . $SIGNATURE_KEY . '<br>';
+//echo 'id=' . $id . '<br>';
+//echo 'digital_signature=' . $digital_signature . '<br>';
+//echo 'get_digital_signature=' . $get_digital_signature . '<br>';
 
 if($digital_signature == $get_digital_signature && $data_urldecode != "")
 {
@@ -47,7 +54,7 @@ SOMEDATA777;
 	
 	if($signature_correct_str == $digital_signature)
 	{
-		//Синхронный ключь корректен ибо мы извлекли нашу хитрую подпись
+		//Синхронный ключ корректен ибо мы извлекли нашу хитрую подпись
 		
 		//echo 'sinc_key target=' . $sinc_key . '<br>';
 		//echo 'encrypted_data_urlencode=' . $encrypted_data_urlencode . '<br>';
@@ -56,20 +63,35 @@ SOMEDATA777;
 		/* decode */
 		$decrypted = mcrypt_decrypt(MCRYPT_RIJNDAEL_256,$sinc_key, base64_decode(urldecode($encrypted_data_urlencode)),MCRYPT_MODE_ECB);
 
-		echo 'Наше сообщение =' . $decrypted . '<br>';		
+		$decrypted_mas = explode('@@@', $decrypted);
+		
+		$return_key = $decrypted_mas[0];
+		
+		unset($decrypted_mas[0]);
+		sort($decrypted_mas);
+		
+		$msg = implode('@@@', $decrypted_mas);
+		
+		echo $return_key;	
+		
+		//echo 'Наше сообщение =' . $msg . '<br>';		
 		
 		
 	}
 	else
-		echo "ERROR5";
+	{
+		//echo "ERROR5";
+		echo $return_key_error;
+	}
+		
 	
 	
 	
 }
 else
 {
-	echo 'ERROR3';
-
+	//echo 'ERROR3';
+	echo $return_key_error;
 }
 
 

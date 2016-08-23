@@ -1,6 +1,6 @@
 <?php
 
-$SIGNATURE_KEY = "12345";
+$SIGNATURE_KEY = "ttt";
 
 
 ?>
