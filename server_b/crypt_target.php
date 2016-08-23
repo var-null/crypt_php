@@ -72,6 +72,9 @@ SOMEDATA777;
 		
 		$msg = implode('@@@', $decrypted_mas);
 		
+		unlink("keys/private_" . $id . ".pem");
+		unlink("keys/public_" . $id . ".pem");
+		
 		echo $return_key;	
 		
 		//echo 'Наше сообщение =' . $msg . '<br>';		
